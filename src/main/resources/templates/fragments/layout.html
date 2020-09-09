@@ -6,10 +6,11 @@
     <title>Logging application</title>
 </head>
 <body>
-<div class="header">
-    <a href="#">Learning log</a>
-    <a href="#">Random scribbles</a>
-    <h1>This is the main page of the logging app</h1>
+<div th:fragment="header(title)" class="header">
+    <a th:href="@{/}">Main page</a>
+    <a th:href="@{/learningLog}">Learning log</a>
+    <a th:href="@{/journal}">Random scribbles</a>
+    <h1 th:text="${title}"></h1>
 </div>
 
     <div class="mainContent">

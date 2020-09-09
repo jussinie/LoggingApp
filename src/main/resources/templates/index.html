@@ -6,7 +6,7 @@
     <title>Logging application</title>
 </head>
 <body>
-<div th:replace="fragments/layout :: header(title='Learning log')"></div>
+<div th:replace="fragments/layout :: header(title='Main page')"></div>
 
     <div class="mainContent">
         <table>
@@ -25,7 +25,7 @@
     </div>
 
     <div class="addEntries">
-        <form th:action="@{/learningLog}" method="post">
+        <form th:action="@{/}" method="post">
 
             <input type="hidden" name="author" value="Jussi Niemi">
             <span>Title:</span>

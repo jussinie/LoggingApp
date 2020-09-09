@@ -1,6 +1,9 @@
 package com.example.LoggingApplication;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,15 +21,11 @@ public class DefaultController {
 
     @GetMapping("/")
     public String home(Model model) {
-        model.addAttribute("entries", logEntryRepository.findAll());
+        Pageable pageable = PageRequest.of(0,3, Sort.by("date").descending());
+        model.addAttribute("entries", logEntryRepository.findAll(pageable));
         return "index";
     }
 
-    @PostMapping("/")
-    public String saveEntry(@RequestParam String author, @RequestParam String title, @RequestParam String content) {
-        logEntryRepository.save(new LogEntry(LocalDate.now(), author, title, content));
-        return "redirect:/";
-    }
 
 }
 
