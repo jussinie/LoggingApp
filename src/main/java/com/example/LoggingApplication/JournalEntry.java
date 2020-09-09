@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.Entity;
-import java.sql.Clob;
 import java.time.LocalDate;
 
 @Entity
@@ -14,7 +13,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class LogEntry extends AbstractPersistable<Long> {
+public class JournalEntry extends AbstractPersistable<Long> {
 
     private LocalDate date;
     private String author;
