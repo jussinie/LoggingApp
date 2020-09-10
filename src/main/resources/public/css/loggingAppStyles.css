@@ -1,0 +1,25 @@
+.mainContent, .header{
+    margin: auto;
+    width: 50em;
+}
+
+.header {
+    text-align: center;
+}
+
+ul {
+    width: 50em;
+    list-style-type: none;
+    padding: 10px;
+    border: 5px indigo;
+    box-shadow: 2px 3px;
+    background-color: khaki;
+}
+
+li {
+    background-color: lawngreen;
+}
+
+body {
+    background-color: hotpink;
+}
