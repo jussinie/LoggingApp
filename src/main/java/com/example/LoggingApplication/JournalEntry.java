@@ -22,7 +22,6 @@ public class JournalEntry extends AbstractPersistable<Long> {
     private LocalDate date;
     private String author;
     private String title;
-    @Type(type = "org.hibernate.type.TextType")
     @Lob
     private Clob content;
 
