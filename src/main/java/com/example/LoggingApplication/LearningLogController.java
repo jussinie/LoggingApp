@@ -11,8 +11,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.io.Reader;
 import java.sql.Clob;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Controller
 public class LearningLogController {
@@ -37,7 +41,29 @@ public class LearningLogController {
 
     @GetMapping("/journal")
     public String showJournalEntries(Model model) {
-        model.addAttribute("entries", journalEntryRepository.findAll());
+        List<JournalEntry> entries = journalEntryRepository.findAll();
+        List<RenderedJournalEntry> renderedEntries = new ArrayList<RenderedJournalEntry>();
+        for (JournalEntry entry: entries) {
+            try {
+            LocalDate date = entry.getDate();
+            String author = entry.getAuthor();
+            String title = entry.getTitle();
+            Clob content = entry.getContent();
+
+            Reader r = content.getCharacterStream();
+            StringBuffer buffer = new StringBuffer();
+            int ch;
+            while ((ch = r.read())!=-1) {
+                buffer.append(""+(char)ch);
+            }
+
+            renderedEntries.add(new RenderedJournalEntry(date, author, title, buffer.toString()));
+
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
+            }
+        }
+        model.addAttribute("entries", renderedEntries);
         return "journal";
     }
 

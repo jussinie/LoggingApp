@@ -1,0 +1,27 @@
+Web-applikaatio: oppimispäiväkirja ja satunnaisia kirjoituksia
+
+Tavoite: 
+Luoda Herokussa pyörivä sovellus, johon voin tallentaa oppimispäiväkirjani ja joitakin muita kirjoituksia. 
+
+Tekninen toteutus: 
+Yksi tietokantataulu päiväkirjamerkinnälle
+    Date
+    Title
+    Author
+    Content
+
+Visuaalinen ilme: 
+    Keskellä sivua container, missä tekstit yms. 
+    Ylhäällä navigaatio, jossa kaksi linkkiä (toinen päiväkirjalle, toinen oppimispäiväkirjalle)
+
+Oppimiskohteet: 
+    
+    Wepa:
+    Date - käyttö (katso materiaali)
+    Aiempien asioiden kertaus
+
+    Git:
+    Koko kurssin aineisto
+
+    CSS:
+    Kertaus tähän mennessä opituista
