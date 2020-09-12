@@ -1,4 +1,8 @@
-.mainContent, .header{
+body {
+    background-color: whitesmoke;
+}
+
+.mainContent, .header, .addEntries{
     margin: auto;
     width: 50em;
 }
@@ -11,16 +15,25 @@ ul {
     width: 50em;
     list-style-type: none;
     padding: 10px;
-    border: 5px indigo;
+    /*border: 5px midnightblue;*/
     border-radius: 5px;
     box-shadow: 2px 3px;
-    background-color: khaki;
+    background-color: powderblue;
 }
 
 li {
+    /*
     background-color: lawngreen;
+    */
 }
 
-body {
-    background-color: hotpink;
+textarea, #titleTextBox {
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    background-color: whitesmoke;
+}
+
+textarea {
+    height: 30em;
 }

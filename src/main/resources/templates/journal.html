@@ -28,10 +28,10 @@
         <form th:action="@{/journal}" method="post">
 
             <input type="hidden" name="author" value="Jussi Niemi">
-            <span>Title:</span>
-            <input type="text" name="title">
-            <span>Content:</span>
-            <textarea name="content"></textarea>
+            <span>Title:</span><br>
+            <input type="text" name="title" id="titleTextBox"><br>
+            <span>Content:</span><br>
+            <textarea name="content"></textarea><br>
             <input type="submit" name="submit" value="Add entry!">
         </form>
     </div>
