@@ -8,21 +8,39 @@
 <body>
 <div th:replace="fragments/layout :: header(title='Main page')"></div>
 
-    <div class="mainContent">
-        <table>
-            <ul th:each="entry : ${entries}">
-                <span>Author:</span>
-                <li th:text="${entry.author}"></li><br>
-                <span>Title:</span>
-                <li th:text="${entry.title}"></li><br>
-                <span>Content:</span>
-                <li th:text="${entry.content}"></li><br>
-                <span>Posted at:</span>
-                <li th:text="${entry.date}"></li><br>
-                <br>
-            </ul>
-        </table>
-    </div>
+<div class="mainContent">
+    <table>
+        <ul th:each="entry : ${logEntries}">
+            <span>Author:</span>
+            <li th:text="${entry.author}"></li><br>
+            <span>Title:</span>
+            <li th:text="${entry.title}"></li><br>
+            <span>Content:</span>
+            <li th:text="${entry.content}"></li><br>
+            <span>Posted at:</span>
+            <li th:text="${entry.date}"></li>
+            <li><a th:href="@{/deleteJournalPost/{id}(id=${entry.id})}">Delete</a></li><br>
+            <br>
+        </ul>
+    </table>
+</div>
+
+<div class="mainContent">
+    <table>
+        <ul th:each="entry : ${journalEntries}">
+            <span>Author:</span>
+            <li th:text="${entry.author}"></li><br>
+            <span>Title:</span>
+            <li th:text="${entry.title}"></li><br>
+            <span>Content:</span>
+            <li th:text="${entry.content}"></li><br>
+            <span>Posted at:</span>
+            <li th:text="${entry.date}"></li>
+            <li><a th:href="@{/deleteJournalPost/{id}(id=${entry.id})}">Delete</a></li><br>
+            <br>
+        </ul>
+    </table>
+</div>
 
 </body>
 </html>

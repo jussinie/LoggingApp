@@ -17,12 +17,17 @@ import java.time.LocalDate;
 public class DefaultController {
 
     @Autowired
-    LogEntryRepository logEntryRepository;
+    JournalLogService journalLogService;
+
+    @Autowired
+    LearningLogService learningLogService;
 
     @GetMapping("/")
     public String home(Model model) {
         Pageable pageable = PageRequest.of(0,3, Sort.by("date").descending());
-        model.addAttribute("entries", logEntryRepository.findAll(pageable));
+        model.addAttribute("logEntries", learningLogService.createRenderedLogEntries());
+        model.addAttribute("journalEntries", journalLogService.createRenderedJournalEntries());
+
         return "index";
     }
 
