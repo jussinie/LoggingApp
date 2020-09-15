@@ -9,7 +9,24 @@
 
     <div th:replace="fragments/layout :: header(title='Learning log')"></div>
 
-    <div th:replace="fragments/layout :: mainContent"></div>
+  <!--  <div th:replace="fragments/layout :: mainContent(link=@{/deleteLogPost/})"></div> -->
+
+    <div th:fragment="mainContent" class="mainContent">
+        <table>
+            <ul th:each="entry : ${entries}">
+                <span>Author:</span>
+                <li th:text="${entry.author}"></li><br>
+                <span>Title:</span>
+                <li th:text="${entry.title}"></li><br>
+                <span>Content:</span>
+                <li th:utext="${entry.content}"></li><br>
+                <span>Posted at:</span>
+                <li th:text="${entry.date}"></li>
+                <li><a th:href="@{/deleteLogPost/{id}(id=${entry.id})}">Delete</a></li><br>
+                <br>
+            </ul>
+        </table>
+    </div>
 
     <div th:replace="fragments/layout :: addEntries(link=@{/learningLog})"></div>
 
