@@ -23,6 +23,20 @@
                 <span>Posted at:</span>
                 <li th:text="${entry.date}"></li>
                 <li><a th:href="@{/deleteJournalPost/{id}(id=${entry.id})}">Delete</a></li><br>
+                    <ul th:each="comment : ${journalComments}" id="commentsList">
+                        <li th:text="${comment.commenter}"></li>
+                        <li th:text="${comment.journalEntryCommentContent}"></li>
+                    </ul>
+
+
+                <form th:action="@{/commentJournalPost}" method="post" id="postComment">
+                    <span>Comment:</span>
+                    <input type="text" name="journalEntryCommentContent">
+                    <span>Commenter:</span>
+                    <input type="text" name="commenter">
+                    <input type="hidden" name="journalId" th:value="${entry.id}">
+                    <input type="submit" name="submit" value="Add comment!">
+                </form>
                 <br>
             </ul>
         </table>

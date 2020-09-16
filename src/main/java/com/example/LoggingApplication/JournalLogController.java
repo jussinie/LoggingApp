@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
 
 @Controller
 public class JournalLogController {
@@ -21,22 +23,32 @@ public class JournalLogController {
     @Autowired
     JournalLogService journalLogService;
 
+    @Autowired
+    JournalCommentRepository journalCommentRepository;
+
     @Transactional
     @GetMapping("/journal")
     public String showJournalEntries(Model model) {
         model.addAttribute("entries", journalLogService.createRenderedJournalEntries());
+        model.addAttribute("journalComments", journalCommentRepository.findAll());
         return "journal";
     }
 
     @PostMapping("/journal")
     public String saveJournalEntry(@RequestParam String author, @RequestParam String title, @RequestParam String content) {
-        journalEntryRepository.save(new JournalEntry(LocalDate.now(), author, title, ClobProxy.generateProxy(content)));
+        journalEntryRepository.save(new JournalEntry(LocalDate.now(), author, title, ClobProxy.generateProxy(content), new ArrayList<>()));
         return "redirect:/journal";
     }
 
     @GetMapping("/deleteJournalPost/{id}")
     public String deleteJournalPost(@PathVariable Long id) {
         journalLogService.deleteJournalEntry(id);
+        return "redirect:/journal";
+    }
+
+    @PostMapping("/commentJournalPost")
+    public String saveComment(@RequestParam String journalEntryCommentContent, @RequestParam String commenter, @RequestParam Long journalId) {
+        journalCommentRepository.save(new JournalComment(new Date(), journalEntryCommentContent, commenter, journalEntryRepository.getOne(journalId)));
         return "redirect:/journal";
     }
 }
