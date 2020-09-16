@@ -22,15 +22,16 @@ public class DefaultController {
     @Autowired
     LearningLogService learningLogService;
 
+    @Autowired
+    JournalEntryRepository journalEntryRepository;
+
     @GetMapping("/")
     public String home(Model model) {
         Pageable pageable = PageRequest.of(0,3, Sort.by("date").descending());
-        model.addAttribute("logEntries", learningLogService.createRenderedLogEntries());
-        model.addAttribute("journalEntries", journalLogService.createRenderedJournalEntries());
-
+        model.addAttribute("logEntries", learningLogService.listNumberOfLogs(3));
+        model.addAttribute("journalEntries", journalEntryRepository.findAll(pageable));
         return "index";
     }
-
 
 }
 

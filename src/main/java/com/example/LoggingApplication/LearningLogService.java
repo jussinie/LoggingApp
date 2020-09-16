@@ -1,6 +1,10 @@
 package com.example.LoggingApplication;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -15,6 +19,11 @@ public class LearningLogService {
 
     @Autowired
     LogEntryRepository logEntryRepository;
+
+    public Page<LogEntry> listNumberOfLogs(int amount) {
+        Pageable pageable = PageRequest.of(0,amount, Sort.by("date").descending());
+        return logEntryRepository.findAll(pageable);
+    }
 
     public List<RenderedLogEntry> createRenderedLogEntries() {
         List<LogEntry> entries = logEntryRepository.findAll();
@@ -43,7 +52,7 @@ public class LearningLogService {
         return renderedEntries;
     }
 
-    public void deleteLogEntry(@RequestParam Long id) {
+    public void deleteLogEntry(Long id) {
         logEntryRepository.delete(logEntryRepository.getOne(id));
     }
 

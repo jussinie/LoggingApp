@@ -2,7 +2,7 @@ body {
     background-color: whitesmoke;
 }
 
-.mainContent, .header, .addEntries{
+.mainContent, .header, .addEntries, .mainPageContent{
     margin: auto;
     width: 50em;
 }

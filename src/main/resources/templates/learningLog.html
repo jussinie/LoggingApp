@@ -22,7 +22,7 @@
                 <li th:utext="${entry.content}"></li><br>
                 <span>Posted at:</span>
                 <li th:text="${entry.date}"></li>
-                <li><a th:href="@{/deleteLogPost/{id}(id=${entry.id})}">Delete</a></li><br>
+                <li><a th:href="@{/deleteLogPost/{id}/delete(id=${entry.id})}">Delete</a></li><br>
                 <br>
             </ul>
         </table>

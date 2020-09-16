@@ -43,8 +43,35 @@ public class JournalLogService {
         return renderedEntries;
     }
 
-    public void deleteJournalEntry(@RequestParam Long id) {
+    public void deleteJournalEntry(Long id) {
         journalEntryRepository.delete(journalEntryRepository.getOne(id));
+    }
+
+    public RenderedJournalEntry selectJournalEntryById(Long selectedId) {
+        JournalEntry entry = journalEntryRepository.getOne(selectedId);
+            try {
+                Long id = entry.getId();
+                LocalDate date = entry.getDate();
+                String author = entry.getAuthor();
+                String title = entry.getTitle();
+                Clob content = entry.getContent();
+
+                Reader r = content.getCharacterStream();
+                StringBuffer buffer = new StringBuffer();
+                int ch;
+                while ((ch = r.read()) != -1) {
+                    buffer.append("" + (char) ch);
+                }
+
+                RenderedJournalEntry renderedEntry = new RenderedJournalEntry(id, date, author, title, buffer.toString());
+
+                return renderedEntry;
+
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
+            }
+
+            return null;
     }
 
 }

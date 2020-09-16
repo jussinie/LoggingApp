@@ -8,38 +8,15 @@
 <body>
 <div th:replace="fragments/layout :: header(title='Main page')"></div>
 
-<div class="mainContent">
-    <table>
-        <ul th:each="entry : ${logEntries}">
-            <span>Author:</span>
-            <li th:text="${entry.author}"></li><br>
-            <span>Title:</span>
-            <li th:text="${entry.title}"></li><br>
-            <span>Content:</span>
-            <li th:text="${entry.content}"></li><br>
-            <span>Posted at:</span>
-            <li th:text="${entry.date}"></li>
-            <li><a th:href="@{/deleteJournalPost/{id}(id=${entry.id})}">Delete</a></li><br>
-            <br>
-        </ul>
-    </table>
-</div>
-
-<div class="mainContent">
-    <table>
-        <ul th:each="entry : ${journalEntries}">
-            <span>Author:</span>
-            <li th:text="${entry.author}"></li><br>
-            <span>Title:</span>
-            <li th:text="${entry.title}"></li><br>
-            <span>Content:</span>
-            <li th:text="${entry.content}"></li><br>
-            <span>Posted at:</span>
-            <li th:text="${entry.date}"></li>
-            <li><a th:href="@{/deleteJournalPost/{id}(id=${entry.id})}">Delete</a></li><br>
-            <br>
-        </ul>
-    </table>
+<div class="mainPageContent">
+    <h3>Latest learning log entries:</h3>
+    <ul th:each="log : ${logEntries}">
+        <li><a th:text="${log.title}" ></a></li>
+    </ul>
+    <h3>Latest journal entries:</h3>
+    <ul th:each="journal : ${journalEntries}" href="#">
+        <li><a th:text="${journal.title}" th:href="@{/journalEntry/{id}(id=${journal.id})}"></a></li>
+    </ul>
 </div>
 
 </body>

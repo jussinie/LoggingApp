@@ -42,7 +42,7 @@ public class LearningLogController {
         return "redirect:/learningLog";
     }
 
-    @GetMapping("/deleteLogPost/{id}")
+    @GetMapping("/deleteLogPost/{id}/delete")
     public String deleteLogPost(@PathVariable Long id) {
         learningLogService.deleteLogEntry(id);
         return "redirect:/learningLog";

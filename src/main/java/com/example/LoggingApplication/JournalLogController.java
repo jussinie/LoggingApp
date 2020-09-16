@@ -34,11 +34,18 @@ public class JournalLogController {
         return "redirect:/journal";
     }
 
-    @GetMapping("/deleteJournalPost/{id}")
+    @GetMapping("/deleteJournalPost/{id}/delete")
     public String deleteJournalPost(@PathVariable Long id) {
         journalLogService.deleteJournalEntry(id);
         return "redirect:/journal";
     }
+
+    @GetMapping("/journalEntry/{id}")
+    public String showJournalPost(@PathVariable Long id, Model model) {
+        model.addAttribute("entry", journalLogService.selectJournalEntryById(id));
+        return "entry";
+    }
+
 }
 
 
