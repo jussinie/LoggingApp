@@ -27,13 +27,35 @@ li {
     */
 }
 
+#commentsList {
+  margin: auto;
+  width: 45em;
+  background-color: aquamarine;
+  margin-top: 1em;
+}
+
+#commentsList li {
+}
+
+#postComment {
+  margin-top: 2em;
+}
+
 textarea, #titleTextBox {
     padding: 10px;
     width: 100%;
-    border-radius: 5px;
+    border-radius: 1em;
     background-color: whitesmoke;
 }
 
 textarea {
     height: 30em;
+}
+
+.inputTextFieldForComments {
+    height: 2em;
+    width: 30%;
+    border-radius: 1em;
+    background-color: whitesmoke;
+    
 }

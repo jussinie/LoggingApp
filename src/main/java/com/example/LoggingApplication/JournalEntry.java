@@ -8,8 +8,12 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.Entity;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import java.sql.Clob;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -24,5 +28,7 @@ public class JournalEntry extends AbstractPersistable<Long> {
     private String title;
     @Lob
     private Clob content;
+    @OneToMany(mappedBy = "journalEntry")
+    private List<JournalComment> journalComments = new ArrayList<>();
 
 }
