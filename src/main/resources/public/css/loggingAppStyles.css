@@ -1,5 +1,6 @@
 body {
     background-color: whitesmoke;
+    font-family: 'Roboto', sans-serif;
 }
 
 .mainContent, .header, .addEntries, .mainPageContent{
@@ -25,6 +26,12 @@ li {
     /*
     background-color: lawngreen;
     */
+}
+
+.tagList {
+    width: 5em;
+    box-shadow: 1px 1px;
+    background-color: azure;
 }
 
 #commentsList {
@@ -57,5 +64,5 @@ textarea {
     width: 30%;
     border-radius: 1em;
     background-color: whitesmoke;
-    
+
 }

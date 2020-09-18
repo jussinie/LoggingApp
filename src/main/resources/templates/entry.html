@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" th:href="@{/css/loggingAppStyles.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <title>Logging application</title>
 </head>
 <body>
@@ -21,6 +22,10 @@
                 <span>Posted at:</span>
                 <li th:text="${entry.date}"></li>
                 <br>
+                <span>Tags:</span>
+                <ul th:each="tag : ${tags}" class="tagList">
+                    <li th:text="${tag.tag}"></li>
+                </ul>
             </ul>
         </table>
     </div>
