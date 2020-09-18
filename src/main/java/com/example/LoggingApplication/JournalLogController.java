@@ -26,6 +26,9 @@ public class JournalLogController {
     @Autowired
     JournalCommentRepository journalCommentRepository;
 
+    @Autowired
+    TagRepository tagRepository;
+
     @Transactional
     @GetMapping("/journal")
     public String showJournalEntries(Model model) {
@@ -35,8 +38,12 @@ public class JournalLogController {
     }
 
     @PostMapping("/journal")
-    public String saveJournalEntry(@RequestParam String author, @RequestParam String title, @RequestParam String content) {
-        journalEntryRepository.save(new JournalEntry(LocalDate.now(), author, title, ClobProxy.generateProxy(content), new ArrayList<>()));
+    public String saveJournalEntry(@RequestParam String author, @RequestParam String title, @RequestParam String content, @RequestParam String tag) {
+        JournalEntry je = new JournalEntry(LocalDate.now(), author, title, ClobProxy.generateProxy(content), new ArrayList<>(), new ArrayList<>());
+        Tag t = new Tag(tag, new ArrayList<>());
+        tagRepository.save(t);
+        je.getJournalTags().add(t);
+        journalEntryRepository.save(je);
         return "redirect:/journal";
     }
 

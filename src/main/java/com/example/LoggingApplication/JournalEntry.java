@@ -6,10 +6,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
-import javax.persistence.Entity;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.sql.Clob;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -30,5 +27,7 @@ public class JournalEntry extends AbstractPersistable<Long> {
     private Clob content;
     @OneToMany(mappedBy = "journalEntry")
     private List<JournalComment> journalComments = new ArrayList<>();
+    @ManyToMany
+    private List<Tag> journalTags = new ArrayList<>();
 
 }
