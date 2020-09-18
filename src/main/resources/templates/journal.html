@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" th:href="@{/css/loggingAppStyles.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <title>Logging application</title>
 </head>
 <body>
@@ -21,7 +22,11 @@
                 <span>Content:</span>
                 <li th:utext="${entry.content}"></li><br>
                 <span>Posted at:</span>
-                <li th:text="${entry.date}"></li>
+                <li th:text="${entry.date}"></li><br>
+                <span>Tags:</span><br>
+                <ul th:each="tag : ${tags}" class="tagList">
+                    <li th:text="${tag.tag}"></li>
+                </ul>
                 <li><a th:href="@{/deleteJournalPost/{id}(id=${entry.id})}">Delete</a></li><br>
                     <ul th:each="comment : ${journalComments}" id="commentsList" th:if="${entry.id} == ${comment.journalEntry.id}">
                         <li th:text="${comment.commenter}"></li>

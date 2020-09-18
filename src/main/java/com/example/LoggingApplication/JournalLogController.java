@@ -34,12 +34,20 @@ public class JournalLogController {
     public String showJournalEntries(Model model) {
         model.addAttribute("entries", journalLogService.createRenderedJournalEntries());
         model.addAttribute("journalComments", journalCommentRepository.findAll());
+        model.addAttribute("tags", tagRepository.findAll());
         return "journal";
     }
 
     @PostMapping("/journal")
     public String saveJournalEntry(@RequestParam String author, @RequestParam String title, @RequestParam String content, @RequestParam String tag) {
-        JournalEntry je = new JournalEntry(LocalDate.now(), author, title, ClobProxy.generateProxy(content), new ArrayList<>(), new ArrayList<>());
+        JournalEntry je = new JournalEntry(
+                LocalDate.now(),
+                author,
+                title,
+                ClobProxy.generateProxy(content),
+                new ArrayList<>(),
+                new ArrayList<>()
+        );
         Tag t = new Tag(tag, new ArrayList<>());
         tagRepository.save(t);
         je.getJournalTags().add(t);
@@ -55,13 +63,19 @@ public class JournalLogController {
 
     @PostMapping("/commentJournalPost")
     public String saveComment(@RequestParam String journalEntryCommentContent, @RequestParam String commenter, @RequestParam Long journalId) {
-        journalCommentRepository.save(new JournalComment(new Date(), journalEntryCommentContent, commenter, journalEntryRepository.getOne(journalId)));
+        journalCommentRepository.save(new JournalComment(
+                new Date(),
+                journalEntryCommentContent,
+                commenter,
+                journalEntryRepository.getOne(journalId)
+        ));
         return "redirect:/journal";
     }
 
     @GetMapping("/journalEntry/{id}")
     public String showJournalEntry(@PathVariable Long id, Model model) {
         model.addAttribute("entry", journalLogService.selectJournalEntryById(id));
+        model.addAttribute("tags", tagRepository.findByJournalEntriesId(id));
         return "entry";
     }
 
