@@ -5,5 +5,5 @@ workflows:
   deploy:
     jobs:
       - docker/publish:
-          image: jussinie/LoggingApp
+          image: jussinie/loggingapplication
           tag: 'latest'
