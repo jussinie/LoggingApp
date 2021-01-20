@@ -16,3 +16,5 @@ jobs:
           heroku_app_name: "github-action-test-loggingapp" #Must be unique in Heroku
           heroku_email: "juissinie@gmail.com"
           usedocker: true
+          justlogin: true
+      - run: heroku auth:whoami
