@@ -1,9 +1,18 @@
 version: 2.1
 orbs:
   docker: circleci/docker@1.0.0
+  heroku: circleci/heroku@0.0.10.
+  
 workflows:
-  deploy:
+  heroku_deploy:
     jobs:
+      - build
+      - heroku/deploy-via-git:
+          requires:
+            - build
+           filters:
+              branches:
+                only: sequential-branch-filter      
       - docker/publish:
           image: jussinie/loggingapplication
           tag: 'latest'
