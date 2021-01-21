@@ -15,6 +15,4 @@ USER spring
 
 WORKDIR /springapp
 
-EXPOSE 8080
-
-CMD java -jar ./target/LoggingApplication-0.0.1-SNAPSHOT.jar -p $PORT:8080
+CMD java -jar ./target/LoggingApplication-0.0.1-SNAPSHOT.jar --bind 0.0.0.0:$PORT wsgi
