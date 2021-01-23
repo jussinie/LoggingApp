@@ -15,4 +15,4 @@ USER spring
 
 WORKDIR /springapp
 
-CMD java -jar ./target/LoggingApplication-0.0.1-SNAPSHOT.jar -e $PORT -p $PORT -Dserver.port=$PORT
+CMD java -jar ./target/LoggingApplication-0.0.1-SNAPSHOT.jar -Dserver.port=$PORT -Dspring.profiles.active=production -e $PORT -p $PORT 
